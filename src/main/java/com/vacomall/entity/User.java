@@ -1,10 +1,13 @@
 package com.vacomall.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * <p>
@@ -22,7 +25,7 @@ public class User implements Serializable {
     /**
      * 主键
      */
-    @TableId("id")
+    @TableId(value="id",type=IdType.UUID)
     private String id;
     /**
      * 用户名
@@ -41,6 +44,7 @@ public class User implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @TableField("createTime")
     private Date createTime;
     /**

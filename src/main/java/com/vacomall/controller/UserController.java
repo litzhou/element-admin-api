@@ -1,10 +1,14 @@
 package com.vacomall.controller;
 
+import java.util.Arrays;
+import java.util.Date;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +45,7 @@ public class UserController {
 	 * @param search
 	 * @return
 	 */
-	@GetMapping("/page")
+	@GetMapping("/list")
 	public Rest page(@RequestParam(value = "current", defaultValue = "1") int current,
 			@RequestParam(value = "size", defaultValue = "10") int size, String search) {
 
@@ -52,15 +56,21 @@ public class UserController {
 		Page<User> page = userService.selectPage(new Page<User>(current, size), wrapper);
 		return Rest.okData(page);
 	}
-
-	@GetMapping("/list")
-	public Rest list() {
-		return Rest.okData(userService.selectList(null));
+	
+	/**
+	 * 新增用户
+	 * @param user
+	 * @return
+	 */
+	@PostMapping("/add")
+	public Rest add(@RequestBody User user) {
+		user.setCreateTime(new Date());
+		userService.insert(user);
+		return Rest.ok();
 	}
 
 	/**
 	 * 删除用户
-	 * 
 	 * @param id
 	 * @return
 	 */
@@ -69,20 +79,20 @@ public class UserController {
 		if (idBean == null || ArrayUtils.isEmpty(idBean.getIds())) {
 			return Rest.failure("客户端传入ID为空");
 		}
-		//userService.deleteById(ids);
+		userService.deleteBatchIds(Arrays.asList(idBean.getIds()));
 		return Rest.ok("删除成功");
 	}
 
 	/**
 	 * 修改
-	 * 
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/update")
-	public Rest list(User user) {
+	@PutMapping("/edit")
+	public Rest edit(@RequestBody User user) {
 		userService.updateById(user);
 		return Rest.ok();
 	}
 
+	
 }
