@@ -46,7 +46,7 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping("/list")
-	public Rest page(@RequestParam(value = "current", defaultValue = "1") int current,
+	public Rest list(@RequestParam(value = "current", defaultValue = "1") int current,
 			@RequestParam(value = "size", defaultValue = "10") int size, String search) {
 
 		EntityWrapper<User> wrapper = new EntityWrapper<User>();

@@ -4,6 +4,8 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -22,7 +24,7 @@ public class Log implements Serializable {
     /**
      * 主键
      */
-    @TableId("id")
+    @TableId(value="id",type=IdType.UUID)
     private String id;
     /**
      * 用户
