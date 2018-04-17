@@ -69,4 +69,18 @@ public class RoleMenu implements Serializable {
         ", menuId=" + menuId +
         "}";
     }
+
+	public RoleMenu(String roleId, String menuId) {
+		super();
+		this.roleId = roleId;
+		this.menuId = menuId;
+	}
+
+	public RoleMenu() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 }

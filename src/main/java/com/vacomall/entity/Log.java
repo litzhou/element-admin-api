@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 
@@ -46,6 +47,7 @@ public class Log implements Serializable {
     /**
      * 日志时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @TableField("createTime")
     private Date createTime;
 
