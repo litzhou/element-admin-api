@@ -55,6 +55,17 @@ public class DeptController {
 		Page<Dept> page = deptService.selectPage(new Page<Dept>(current, size), wrapper);
 		return Rest.okData(page);
 	}
+	/**
+	 * 获取所有部门
+	 * @param current
+	 * @param size
+	 * @param search
+	 * @return
+	 */
+	@GetMapping("/Alllist")
+	public Rest alllist() {
+		return Rest.okData(deptService.selectList(null));
+	}
 	
 	/**
 	 * 新增

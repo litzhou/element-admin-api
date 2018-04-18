@@ -63,6 +63,9 @@ public class User implements Serializable {
     @TableField("deptId")
     private String deptId;
 
+    /**角色数据，用户接受前段参数**/
+    @TableField(exist=false)
+    private String[] roleIds;
 
     public String getId() {
         return id;
@@ -127,8 +130,16 @@ public class User implements Serializable {
     public void setDeptId(String deptId) {
         this.deptId = deptId;
     }
+    
+    public String[] getRoleIds() {
+		return roleIds;
+	}
 
-    @Override
+	public void setRoleIds(String[] roleIds) {
+		this.roleIds = roleIds;
+	}
+
+	@Override
     public String toString() {
         return "User{" +
         ", id=" + id +

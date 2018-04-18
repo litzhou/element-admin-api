@@ -60,7 +60,7 @@ public class UserRole implements Serializable {
     public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
-
+    
     @Override
     public String toString() {
         return "UserRole{" +
@@ -69,4 +69,17 @@ public class UserRole implements Serializable {
         ", roleId=" + roleId +
         "}";
     }
+
+	public UserRole(String userId, String roleId) {
+		super();
+		this.userId = userId;
+		this.roleId = roleId;
+	}
+
+	public UserRole() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
 }

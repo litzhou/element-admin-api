@@ -65,7 +65,7 @@ public class UserController {
 	@PostMapping("/add")
 	public Rest add(@RequestBody User user) {
 		user.setCreateTime(new Date());
-		userService.insert(user);
+		userService.insertUser(user);
 		return Rest.ok();
 	}
 
@@ -90,7 +90,7 @@ public class UserController {
 	 */
 	@PutMapping("/edit")
 	public Rest edit(@RequestBody User user) {
-		userService.updateById(user);
+		userService.updateUser(user);
 		return Rest.ok();
 	}
 
