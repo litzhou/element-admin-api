@@ -32,7 +32,7 @@ public class MenuController {
 	 * @return
 	 */
 	@GetMapping("/getListByPid")
-	public Rest getListByPid(@RequestParam String pid) {
+	public Rest getListByPid(@RequestParam(defaultValue="0") String pid) {
 		
 		EntityWrapper<Menu> wrapper = new EntityWrapper<Menu>();
 		wrapper.orderBy("sort",true);
