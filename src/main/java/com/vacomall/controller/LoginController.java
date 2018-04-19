@@ -1,6 +1,7 @@
 package com.vacomall.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.vacomall.bean.LoginBean;
 import com.vacomall.bean.Rest;
 import com.vacomall.entity.User;
+import com.vacomall.service.MenuService;
 import com.vacomall.service.UserService;
 
 /**
@@ -30,6 +32,7 @@ import com.vacomall.service.UserService;
 public class LoginController {
 
 	@Autowired private UserService userService;
+	@Autowired private MenuService menuService;
 	
 	/**
 	 * 登录
@@ -55,7 +58,7 @@ public class LoginController {
 		session.setAttribute("user", user);
 		Map<String, Object> map = new HashMap<>();
 		map.put("user", user);
-		map.put("menu", new String[]{"index","icon","dep","lang","echarts","editor","markdown","crud"});
+		map.put("menu", menuService.selectResByUid(user.getId()));
 		return Rest.okData(map);
 		
 	}
@@ -70,7 +73,8 @@ public class LoginController {
 		if(user != null) {
 			Map<String, Object> map = new HashMap<>();
 			map.put("user", user);
-			map.put("menu", new String[]{"index","icon","dep","lang","echarts","editor","markdown","crud"});
+			map.put("menu", menuService.selectResByUid(user.getId()));
+			//map.put("menu", new String[]{"index","icon","dep","lang","echarts","editor","markdown","crud"});
 			return Rest.okData(map);
 		}
 		return Rest.failure("用户登录已过期");
@@ -87,16 +91,17 @@ public class LoginController {
 	}
 	
 	/**
-	 * 获取登录用户的菜单
+	 * 获取登录用户的权限,返回权限列表
 	 * @return
 	 */
-	@GetMapping("/menu")
-	public Rest menu(@SessionAttribute(required=false) User user) {
+	@GetMapping("/auth")
+	public Rest auth(@SessionAttribute(required=false) User user) {
 		
 		if(user == null) {
 			return Rest.failure("用户登录已过期");
 		}
-		return Rest.ok();
+		List<String> listRes = menuService.selectResByUid(user.getId());
+		return Rest.okData(listRes);
 	}
 	
 }
