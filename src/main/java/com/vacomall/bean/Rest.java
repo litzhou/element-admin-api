@@ -67,7 +67,7 @@ public class Rest {
 	}
 	
 	public static Rest ok(){
-		return new Rest(200,true,"ok",null,null);
+		return new Rest(200,true,"OK",null,null);
 	}
 	
 	public static Rest ok(String message){
@@ -75,7 +75,7 @@ public class Rest {
 	}
 	
 	public static Rest okData(Object object){
-		return new Rest(200,true,"ok",object,null);
+		return new Rest(200,true,"OK",object,null);
 	}
 	
 	public static Rest failure(String message){
