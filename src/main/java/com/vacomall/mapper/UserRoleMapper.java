@@ -1,7 +1,7 @@
 package com.vacomall.mapper;
 
-import com.vacomall.entity.UserRole;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.vacomall.entity.UserRole;
 
 /**
  * <p>

@@ -2,6 +2,7 @@ package com.vacomall.controller;
 
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,7 @@ public class LogController {
 	 * @param search
 	 * @return
 	 */
+	@RequiresPermissions("log:list")
 	@GetMapping("/list")
 	public Rest list(@RequestParam(value = "current", defaultValue = "1") int current,
 			@RequestParam(value = "size", defaultValue = "10") int size, String search) {

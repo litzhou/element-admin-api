@@ -3,6 +3,7 @@ package com.vacomall;
 import javax.validation.ValidationException;
 
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -92,9 +93,16 @@ public class ExceptionAdvice {
      * @return
      */
     @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(UnauthorizedException.class)
+    public Rest handleUnauthorizedException(UnauthorizedException e) {
+        logger.error("无访问权限,"+e.getMessage());
+        return Rest.failure("无访问权限,"+e.getMessage());
+    }
+    
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(Exception.class)
     public Rest handleException(Exception e) {
-        logger.error("服务运行异常,"+e.getMessage());
-        return Rest.failure("服务运行异常,"+e.getMessage());
+    	logger.error("服务运行异常,"+e.getMessage());
+    	return Rest.failure("服务运行异常,"+e.getMessage());
     }
 }

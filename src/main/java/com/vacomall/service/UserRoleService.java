@@ -1,7 +1,9 @@
 package com.vacomall.service;
 
-import com.vacomall.entity.UserRole;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
+import com.vacomall.entity.UserRole;
 
 /**
  * <p>
@@ -12,5 +14,12 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2018-03-15
  */
 public interface UserRoleService extends IService<UserRole> {
+	
+	/**
+	 * 获取用户角色标识集合，一般不用
+	 * @param uid
+	 * @return
+	 */
+	List<String> selectRoleIdentificationsByUid(String uid);
 
 }

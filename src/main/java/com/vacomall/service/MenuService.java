@@ -16,7 +16,7 @@ import com.vacomall.entity.Menu;
  * @author gaojun.zhou
  * @since 2018-03-15
  */
-@CacheConfig(cacheNames = "menus")
+//@CacheConfig(cacheNames = "menus")
 public interface MenuService extends IService<Menu> {
 	
 	/**
@@ -24,7 +24,7 @@ public interface MenuService extends IService<Menu> {
 	 * @param id
 	 * @return
 	 */
-	@Cacheable(key="#uid")
+	//@Cacheable(key="#uid")
 	List<String> selectResByUid(String uid);
 
 }

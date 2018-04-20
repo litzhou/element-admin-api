@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +46,7 @@ public class UserController {
 	 * @param search
 	 * @return
 	 */
+	@RequiresPermissions("user:list")
 	@GetMapping("/list")
 	public Rest list(@RequestParam(value = "current", defaultValue = "1") int current,
 			@RequestParam(value = "size", defaultValue = "10") int size, String search) {
@@ -62,6 +64,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
+	@RequiresPermissions("user:add")
 	@PostMapping("/add")
 	public Rest add(@RequestBody User user) {
 		user.setCreateTime(new Date());
@@ -74,6 +77,7 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
+	@RequiresPermissions("user:delete")
 	@DeleteMapping("/delete")
 	public Rest delete(@RequestBody IdBean idBean) {
 		if (idBean == null || ArrayUtils.isEmpty(idBean.getIds())) {
@@ -88,6 +92,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
+	@RequiresPermissions("user:edit")
 	@PutMapping("/edit")
 	public Rest edit(@RequestBody User user) {
 		userService.updateUser(user);
