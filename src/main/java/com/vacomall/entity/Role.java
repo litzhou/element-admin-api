@@ -20,84 +20,93 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @TableName("sys_role")
 public class Role implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
-    @TableId(value="id",type=IdType.UUID)
-    private String id;
-    /**
-     * 角色名称
-     */
-    @TableField("roleName")
-    private String roleName;
-    /**
-     * 角色描述
-     */
-    @TableField("roleDesc")
-    private String roleDesc;
-    /**
-     * 状态,1-启用,-1禁用
-     */
-    @TableField("roleState")
-    private Integer roleState;
-    /**
-     * 创建时间
-     */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @TableField("createTime")
-    private Date createTime;
+	/**
+	 * 主键
+	 */
+	@TableId(value = "id", type = IdType.UUID)
+	private String id;
+	/**
+	 * 角色名称
+	 */
+	@TableField("roleName")
+	private String roleName;
+	/**
+	 * 角色描述
+	 */
+	@TableField("roleDesc")
+	private String roleDesc;
+	/**
+	 * 状态,1-启用,-1禁用
+	 */
+	@TableField("roleState")
+	private Integer roleState;
+	/**
+	 * 创建时间
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField("createTime")
+	private Date createTime;
 
+	/**
+	 * 角色标识
+	 */
+	@TableField("roleIdentification")
+	private String roleIdentification;
 
-    public String getId() {
-        return id;
-    }
+	public String getRoleIdentification() {
+		return roleIdentification;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setRoleIdentification(String roleIdentification) {
+		this.roleIdentification = roleIdentification;
+	}
 
-    public String getRoleName() {
-        return roleName;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getRoleDesc() {
-        return roleDesc;
-    }
+	public String getRoleName() {
+		return roleName;
+	}
 
-    public void setRoleDesc(String roleDesc) {
-        this.roleDesc = roleDesc;
-    }
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 
-    public Integer getRoleState() {
-        return roleState;
-    }
+	public String getRoleDesc() {
+		return roleDesc;
+	}
 
-    public void setRoleState(Integer roleState) {
-        this.roleState = roleState;
-    }
+	public void setRoleDesc(String roleDesc) {
+		this.roleDesc = roleDesc;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public Integer getRoleState() {
+		return roleState;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setRoleState(Integer roleState) {
+		this.roleState = roleState;
+	}
 
-    @Override
-    public String toString() {
-        return "Role{" +
-        ", id=" + id +
-        ", roleName=" + roleName +
-        ", roleDesc=" + roleDesc +
-        ", roleState=" + roleState +
-        ", createTime=" + createTime +
-        "}";
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", roleName=" + roleName + ", roleDesc=" + roleDesc + ", roleState=" + roleState
+				+ ", createTime=" + createTime + ", roleIdentification=" + roleIdentification + "]";
+	}
+
 }

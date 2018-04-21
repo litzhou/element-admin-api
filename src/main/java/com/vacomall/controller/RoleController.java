@@ -7,6 +7,7 @@ import java.util.Date;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,6 +79,7 @@ public class RoleController {
 	 * @return
 	 */
 	@RequiresPermissions("role:delete")
+	@RequiresRoles("admin")
 	@DeleteMapping("/delete")
 	public Rest delete(@RequestBody IdBean idBean) {
 		if (idBean == null || ArrayUtils.isEmpty(idBean.getIds())) {

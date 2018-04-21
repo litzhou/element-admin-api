@@ -12,7 +12,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -79,15 +78,5 @@ public class AuthRealm extends AuthorizingRealm {
 		info.setStringPermissions(permissions);
 		return info;
 	}
-	
-	/**
-	 * 密码加密 测试
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// MD5,"原密码","盐",加密次数
-		String pwd =  new SimpleHash("MD5", "123", "test", 1024).toString();
-		System.out.println(pwd);
-		
-	}
+
 }
