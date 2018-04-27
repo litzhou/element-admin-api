@@ -2,6 +2,11 @@ package com.vacomall.bean;
 
 import java.io.Serializable;
 
+/**
+ * 登录参数封装
+ * @author Administrator
+ *
+ */
 public class LoginBean implements Serializable{
 
 	/**

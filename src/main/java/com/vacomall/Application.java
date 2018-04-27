@@ -9,8 +9,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * 入口
- * @author jameszhou
+ * 程序启动入口
+ * @author Administrator
  *
  */
 @EnableTransactionManagement
@@ -24,7 +24,7 @@ public class Application {
         SpringApplication app = new SpringApplication(Application.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
-        logger.info("PortalApplication is success!");
+        logger.info("Application run is success!");
     }
 
 }

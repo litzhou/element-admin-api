@@ -2,6 +2,11 @@ package com.vacomall.bean;
 
 import java.io.Serializable;
 
+/**
+ * 数组参数接受封装
+ * @author Administrator
+ *
+ */
 public class IdBean implements Serializable{
 
 	/**

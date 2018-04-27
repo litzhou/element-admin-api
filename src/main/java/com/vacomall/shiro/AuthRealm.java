@@ -1,4 +1,4 @@
-package com.vacomall.bean;
+package com.vacomall.shiro;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -72,8 +72,8 @@ public class AuthRealm extends AuthorizingRealm {
 		
 		User user = (User) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		Set<String> roles = new HashSet<String>(userRoleService.selectRoleIdentificationsByUid(user.getId()));
-		Set<String> permissions = new HashSet<String>( menuService.selectResByUid(user.getId()));
+		Set<String> roles = new HashSet<String>(userRoleService.selectRoleIdentificationsByUid(user.getId())); //角色，一般用的少
+		Set<String> permissions = new HashSet<String>( menuService.selectResByUid(user.getId())); //权限
 		info.setRoles(roles);
 		info.setStringPermissions(permissions);
 		return info;
