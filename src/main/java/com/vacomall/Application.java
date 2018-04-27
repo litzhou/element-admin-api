@@ -24,7 +24,7 @@ public class Application {
         SpringApplication app = new SpringApplication(Application.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
-        logger.info("Application run is success!");
+        logger.info("Application is success!");
     }
 
 }
