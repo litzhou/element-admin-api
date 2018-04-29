@@ -1,6 +1,7 @@
 package com.vacomall.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -26,5 +27,13 @@ public interface MenuService extends IService<Menu> {
 	 */
 	@Cacheable(key="#uid")
 	List<String> selectResByUid(String uid);
+	
+	/**
+	 * 查询菜单树
+	 * @param search 条件
+	 * @param pid 上级ID
+	 * @return 
+	 */
+	List<Map<String, Object>> selectMapMenus(String search, String pid);
 
 }
