@@ -1,13 +1,18 @@
 package com.vacomall;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.ValidationException;
 
 import org.apache.log4j.Logger;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -87,9 +92,8 @@ public class ExceptionAdvice {
     }
     
     /**
-     * 500
+     * 权限异常
      * @param e
-     * @param model
      * @return
      */
     @ResponseStatus(HttpStatus.OK)
@@ -99,6 +103,28 @@ public class ExceptionAdvice {
         return Rest.failure("无访问权限,"+e.getMessage());
     }
     
+    /**
+     * 参数校验异常
+     * @param e
+     * @return
+     */
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Rest handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+    	BindingResult bind =  e.getBindingResult();
+    	logger.error("参数校验失败,"+e.getMessage());
+    	if(bind.hasErrors()) {
+    		List<String> errors = bind.getAllErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.toList());
+    		return Rest.failure(500, "参数校验失败", errors, e.getMessage());
+    	}
+    	return Rest.failure("参数校验失败,"+e.getMessage());
+    }
+    
+    /**
+     * 默认异常
+     * @param e
+     * @return
+     */
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(Exception.class)
     public Rest handleException(Exception e) {

@@ -43,8 +43,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 			wrapper.like("menuName", search);
 		}
 		List<Map<String,Object>> list = this.selectMaps(wrapper);
-		for(Map<String, Object> map : list) {
-			if(MapUtils.getIntValue(map, "deep") < 3) {
+		if(!list.isEmpty()) {
+			for(Map<String, Object> map : list) {
+				/*if(MapUtils.getIntValue(map, "deep") < 3) {
+				}*/
 				map.put("children", this.selectMapMenus(search,MapUtils.getString(map, "id")));
 			}
 		}

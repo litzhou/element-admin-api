@@ -3,6 +3,8 @@ package com.vacomall.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -30,6 +32,7 @@ public class Role implements Serializable {
 	/**
 	 * 角色名称
 	 */
+	@NotBlank(message="角色名称不能为空")
 	@TableField("roleName")
 	private String roleName;
 	/**

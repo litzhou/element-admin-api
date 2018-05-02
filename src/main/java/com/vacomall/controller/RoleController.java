@@ -4,6 +4,8 @@ package com.vacomall.controller;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -67,7 +69,7 @@ public class RoleController {
 	 */
 	@RequiresPermissions("role:add")
 	@PostMapping("/add")
-	public Rest add(@RequestBody Role role) {
+	public Rest add(@RequestBody @Valid Role role) {
 		role.setCreateTime(new Date());
 		roleService.insert(role);
 		return Rest.ok();
@@ -96,7 +98,7 @@ public class RoleController {
 	 */
 	@RequiresPermissions("role:edit")
 	@PutMapping("/edit")
-	public Rest edit(@RequestBody Role role) {
+	public Rest edit(@RequestBody @Valid Role role) {
 		roleService.updateById(role);
 		return Rest.ok();
 	}

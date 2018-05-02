@@ -3,6 +3,8 @@ package com.vacomall.controller;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,6 +25,7 @@ import com.vacomall.bean.IdBean;
 import com.vacomall.bean.Rest;
 import com.vacomall.entity.User;
 import com.vacomall.service.UserService;
+import com.vacomall.util.ShiroUtil;
 
 /**
  * <p>
@@ -67,8 +70,9 @@ public class UserController {
 	 */
 	@RequiresPermissions("user:add")
 	@PostMapping("/add")
-	public Rest add(@RequestBody User user) {
+	public Rest add(@RequestBody @Valid User user) {
 		user.setCreateTime(new Date());
+		user.setPassword(ShiroUtil.md51024Pwd(user.getPassword(), user.getUserName()));
 		userService.insertUser(user);
 		return Rest.ok();
 	}
@@ -96,7 +100,7 @@ public class UserController {
 	 */
 	@RequiresPermissions("user:edit")
 	@PutMapping("/edit")
-	public Rest edit(@RequestBody User user) {
+	public Rest edit(@RequestBody @Valid User user) {
 		userService.updateUser(user);
 		return Rest.ok();
 	}

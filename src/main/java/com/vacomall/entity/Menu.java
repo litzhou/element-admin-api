@@ -51,10 +51,6 @@ public class Menu implements Serializable {
      */
     private Integer deep;
     /**
-     * 编码
-     */
-    private String code;
-    /**
      * 资源名称
      */
     private String resource;
@@ -116,14 +112,6 @@ public class Menu implements Serializable {
         this.deep = deep;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getResource() {
         return resource;
     }
@@ -142,7 +130,6 @@ public class Menu implements Serializable {
         ", icon=" + icon +
         ", sort=" + sort +
         ", deep=" + deep +
-        ", code=" + code +
         ", resource=" + resource +
         "}";
     }

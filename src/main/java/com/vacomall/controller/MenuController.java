@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,24 +54,13 @@ public class MenuController {
 	}
 	
 	/**
-	 * 编辑
-	 * @param menu
-	 * @return
-	 */
-	@PutMapping("/edit")
-	public Rest edit(@RequestBody Menu menu) {
-		menuService.updateById(menu);
-		return Rest.ok();
-	}
-	
-	/**
 	 * 查询所有的菜单数据
 	 * @param search
 	 * @return
 	 */
 	@RequiresPermissions("menu:list")
 	@GetMapping("/list/all")
-	public Rest list( String search) {
+	public Rest listAll( String search) {
 
 		List<Map<String, Object>> list = menuService.selectMapMenus(search,"0");
 		return Rest.okData(list);
@@ -81,11 +72,22 @@ public class MenuController {
 	 */
 	@RequiresPermissions("menu:add")
 	@PostMapping("/add")
-	public Rest add(@RequestBody Menu menu) {
+	public Rest add(@RequestBody @Valid Menu menu) {
 		menuService.insert(menu);
 		return Rest.ok();
 	}
-
+	
+	/**
+	 * 编辑
+	 * @param menu
+	 * @return
+	 */
+	@PutMapping("/edit")
+	public Rest edit(@RequestBody @Valid Menu menu) {
+		menuService.updateById(menu);
+		return Rest.ok();
+	}
+	
 	/**
 	 * 删除
 	 * @param id

@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * <p>
  * 部门表
@@ -28,6 +30,7 @@ public class Dept implements Serializable {
     /**
      * 部门名称
      */
+    @NotBlank(message="部门名称不能为空")
     @TableField("deptName")
     private String deptName;
     /**

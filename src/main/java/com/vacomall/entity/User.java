@@ -3,6 +3,9 @@ package com.vacomall.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -30,11 +33,16 @@ public class User implements Serializable {
     /**
      * 用户名
      */
+    @NotBlank(message="用户名不能为空")
+    @Length(min=4,max=10,message="用户名长度需要在4和10之间")
     @TableField("userName")
     private String userName;
     /**
      * 密码
      */
+    @NotBlank(message="密码不能为空")
+    @Length(min=6,max=16,message="密码长度需要在6和16之间")
+    @TableField("password")
     private String password;
     /**
      * 用户状态,1-启用,-1禁用

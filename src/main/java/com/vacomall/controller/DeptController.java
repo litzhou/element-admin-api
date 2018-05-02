@@ -3,6 +3,8 @@ package com.vacomall.controller;
 
 import java.util.Arrays;
 
+import javax.validation.Valid;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -76,7 +78,7 @@ public class DeptController {
 	 */
 	@RequiresPermissions("dept:add")
 	@PostMapping("/add")
-	public Rest add(@RequestBody Dept dept) {
+	public Rest add(@RequestBody @Valid Dept dept) {
 		deptService.insert(dept);
 		return Rest.ok();
 	}
@@ -103,7 +105,7 @@ public class DeptController {
 	 */
 	@RequiresPermissions("dept:edit")
 	@PutMapping("/edit")
-	public Rest edit(@RequestBody Dept dept) {
+	public Rest edit(@RequestBody @Valid Dept dept) {
 		deptService.updateById(dept);
 		return Rest.ok();
 	}
