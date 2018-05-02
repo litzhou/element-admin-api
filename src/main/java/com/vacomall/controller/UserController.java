@@ -64,7 +64,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 新增用户
+	 * 新增
 	 * @param user
 	 * @return
 	 */
@@ -78,7 +78,19 @@ public class UserController {
 	}
 
 	/**
-	 * 删除用户
+	 * 修改
+	 * @param user
+	 * @return
+	 */
+	@RequiresPermissions("user:edit")
+	@PutMapping("/edit")
+	public Rest edit(@RequestBody @Valid User user) {
+		userService.updateUser(user);
+		return Rest.ok();
+	}
+	
+	/**
+	 * 删除
 	 * @param id
 	 * @return
 	 */
@@ -92,18 +104,5 @@ public class UserController {
 		userService.deleteBatchIds(Arrays.asList(idBean.getIds()));
 		return Rest.ok("删除成功");
 	}
-
-	/**
-	 * 修改
-	 * @param user
-	 * @return
-	 */
-	@RequiresPermissions("user:edit")
-	@PutMapping("/edit")
-	public Rest edit(@RequestBody @Valid User user) {
-		userService.updateUser(user);
-		return Rest.ok();
-	}
-
 	
 }
